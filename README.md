@@ -7,7 +7,7 @@ Building from source
 --------------------
 Can be built with <a href="http://maven.apache.org">Maven</a> by using the following command:
 
-	mvn install
+	mvn package
 	
 To build it and install it into your local maven repo use the following command:
 
