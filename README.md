@@ -6,9 +6,11 @@ This library extends <a href="https://github.com/marceloverdijk/lesscss-java">Of
 Building from source
 --------------------
 Can be built with <a href="http://maven.apache.org">Maven</a> by using the following command:
-	mvn package
 
+	mvn install
+	
 To build it and install it into your local maven repo use the following command:
+
 	mvn install
 
 Example - gradle build
