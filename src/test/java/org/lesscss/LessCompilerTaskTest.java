@@ -33,8 +33,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class LessCompilerTaskTest {
 
-	private static final String OUTPUT_FILE = "output_file";
-	private static final String INPUT_FILE = "input_file";
+	private static final File OUTPUT_FILE = new File("output_file");
+	private static final File INPUT_FILE = new File("input_file");
 
 	@Mock
 	private LessCompiler lessCompiler;
@@ -54,8 +54,8 @@ public class LessCompilerTaskTest {
 		lessCompilerTask.execute();
 
 		verify(lessCompiler).setCompress(false);
-		verify(lessCompiler).compile(new File(INPUT_FILE),
-				new File(OUTPUT_FILE));
+		verify(lessCompiler).compile(INPUT_FILE,
+				OUTPUT_FILE);
 		verify(project).log(eq(lessCompilerTask), anyString(),
 				eq(Project.MSG_DEBUG));
 
@@ -75,8 +75,8 @@ public class LessCompilerTaskTest {
 		lessCompilerTask.execute();
 
 		verify(lessCompiler).setCompress(true);
-		verify(lessCompiler).compile(new File(INPUT_FILE),
-				new File(OUTPUT_FILE));
+		verify(lessCompiler).compile(INPUT_FILE,
+				OUTPUT_FILE);
 		verify(project).log(eq(lessCompilerTask), anyString(),
 				eq(Project.MSG_DEBUG));
 	}

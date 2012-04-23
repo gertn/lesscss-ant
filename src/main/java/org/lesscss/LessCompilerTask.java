@@ -28,16 +28,16 @@ import org.apache.tools.ant.Task;
  *
  */
 public class LessCompilerTask extends Task {
-	private String input;
-	private String output;	
+	private File input;
+	private File output;	
 	private boolean compress;	
 	private LessCompiler compiler;
 
-	public void setInput(String input) {
+	public void setInput(File input) {
 		this.input = input;
 	}
 
-	public void setOutput(String output) {
+	public void setOutput(File output) {
 		this.output = output;
 	}
 	
@@ -46,6 +46,7 @@ public class LessCompilerTask extends Task {
 	}
 
 	public void execute() {
+		long start = System.currentTimeMillis();
 		this.compiler = new LessCompiler();
 		try {
 			if (input == null) {
@@ -61,11 +62,10 @@ public class LessCompilerTask extends Task {
 					+ output 
 					+ " (compress: " + compress + ")", Project.MSG_DEBUG);
 			
-			File inputFile = new File(input);
-			File outputFile = new File(output);
 			
 			this.compiler.setCompress(compress);
-			this.compiler.compile(inputFile, outputFile);
+			this.compiler.compile(input, output);
+			this.log("Compilation of file " + input + " finished in " + (System.currentTimeMillis() - start) + " ms");
 		} catch (LessException e) {
 			throw new BuildException("Error compiling less file", e);
 		} catch (IOException e) {
